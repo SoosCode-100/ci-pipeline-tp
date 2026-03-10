@@ -14,7 +14,6 @@ class UserManager:
     def count_users(self):
         return len(self.users)
     def count_total_users(users):
-        temp= 0
         return len(users)
 # This is a rudimentary test to see if my yml file has worked 
 #ANOTHER test to ensure that everything is working as it should
