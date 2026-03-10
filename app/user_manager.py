@@ -17,3 +17,4 @@ class UserManager:
         temp= 0
         return len(users)
 # This is a rudimentary test to see if my yml file has worked 
+#ANOTHER test to ensure that everything is working as it should
