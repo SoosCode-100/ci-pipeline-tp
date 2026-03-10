@@ -9,7 +9,7 @@ def test_add_existing_user():
     manager = UserManager()
     manager.add_user("Adam")
     with pytest.raises(ValueError):
-        manager.addd_user("Adam")
+        manager.add_user("Adam")
 
 def test_remove_user():
     manager = UserManager()
