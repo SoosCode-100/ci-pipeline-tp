@@ -39,7 +39,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: lancement
-        run: pytest tests -v --cov=app 
+        run:  python -m pytest tests -v --cov=app 
         
   build:
     runs-on: ubuntu-latest
