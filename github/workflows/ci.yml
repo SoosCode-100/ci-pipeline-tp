@@ -1,0 +1,28 @@
+name: testing
+
+on: 
+  push:
+    branches: [main]
+  pull request: 
+    branches: [main]
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Installer python
+      - uses: actions/setup-python@v5 
+        with: 
+          python-version: "3.11"
+      - name: Installer dépendances
+        run: pip install -r requirements.txt
+
+      - name: Install lint
+        run: pip install flake8
+      - name: Linting
+        run: flake8 app --count --select=E9,F63,F82,F841 --show-source --statistics || flake8 app --count --max-complexity=10 --max-line-length= 127 --statistics || flake8 tests --count --max-line-length=127 --statistics
+      - name: lancement
+        run: pytest -v --cov=app 
+        

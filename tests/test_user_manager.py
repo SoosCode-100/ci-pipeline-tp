@@ -1,0 +1,23 @@
+import pytest 
+from app.user_manager import UserManager
+def test_add_user():
+    manager = UserManager()
+    manager.add_user("Adam")
+    assert manager.count_users() == 1
+
+def test_add_existing_user():
+    manager = UserManager()
+    manager.add_user("Adam")
+    with pytest.raises(ValueError):
+        manager.addd_user("Adam")
+
+def test_remove_user():
+    manager = UserManager()
+    manager.add_user("Youssef")
+    manager.remove_user("Youssef")
+    assert manager.count_user()== 0 
+
+def test_remove_unknown_user():
+    manager = UserManager()
+    with pytest.raises(ValueError):
+        manager.remove_user("saad")
