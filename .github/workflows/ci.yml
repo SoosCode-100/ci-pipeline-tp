@@ -10,7 +10,7 @@ on:
   workflow_dispatch: 
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v4
@@ -20,11 +20,39 @@ jobs:
           python-version: "3.11"
       - name: Installer dépendances
         run: pip install -r requirements.txt
-
+  
       - name: Install lint
         run: pip install flake8
       - name: Linting
         run: flake8 app --count --select=E9,F63,F82,F841 --show-source --statistics || flake8 app --count --max-complexity=10 --max-line-length= 127 --statistics || flake8 tests --count --max-line-length=127 --statistics
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Installer dépendances
+        run: pip install -r requirements.txt
+
       - name: lancement
         run: pytest tests -v --cov=app 
         
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Installer dépendances
+        run: pip install -r requirements.txt
+
+      - name: Build
+        run: python -m build
+        uses: actions/upload-artifact@v3
