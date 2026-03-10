@@ -24,5 +24,5 @@ jobs:
       - name: Linting
         run: flake8 app --count --select=E9,F63,F82,F841 --show-source --statistics || flake8 app --count --max-complexity=10 --max-line-length= 127 --statistics || flake8 tests --count --max-line-length=127 --statistics
       - name: lancement
-        run: pytest -v --cov=app 
+        run: pytest tests -v --cov=app 
         
