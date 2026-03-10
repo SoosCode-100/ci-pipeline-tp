@@ -16,3 +16,4 @@ class UserManager:
     def count_total_users(users):
         temp= 0
         return len(users)
+# This is a rudimentary test to see if my yml file has worked 
