@@ -55,4 +55,4 @@ jobs:
 
       - name: Build
         run: python -m build
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
